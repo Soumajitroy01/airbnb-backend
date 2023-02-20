@@ -23,7 +23,7 @@ app.use('/uploads', express.static(__dirname+'/uploads'));
 app.use(function (req, res, next) {
 
   // website you wish to  allow to connet    
-  res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:5173');
+  res.setHeader('Access-Control-Allow-Origin','https://airbnb-clone-soumajit.web.app');
 
   // request method you wish to allow
   res.setHeader('Access-Control-Allow-Methods','GET, POST, OPTION, PUT, PATCH, DELETE');
