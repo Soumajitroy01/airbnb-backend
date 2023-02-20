@@ -13,6 +13,7 @@ const fs = require('fs');
 
 require('dotenv').config();
 const app = express();
+const port = process.env.PORT || 4000;
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
@@ -195,4 +196,4 @@ app.get('/bookings', async (req,res) => {
   res.json( await Booking.find({user:userData.id}).populate('place') );
 });
 
-app.listen(4000);
+app.listen(port, console.log('Hello World!'));
