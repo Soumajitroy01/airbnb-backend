@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -21,10 +20,25 @@ const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname+'/uploads'));
-app.use(cors({
-  credentials: true,
-  origin: 'http://127.0.0.1:5173',
-}));
+app.use(function (req, res, next) {
+
+  // website you wish to  allow to connet    
+  res.setHeader('Access-Control-Allow-Origin','http://127.0.0.1:5173/');
+
+  // request method you wish to allow
+  res.setHeader('Access-Control-Allow-Methods','GET, POST, OPTION, PUT, PATCH, DELETE');
+
+  // request headers you wish to allow 
+  res.setHeader('Access-Control-Allow-Headers','X-Requested-With,content-type,Authorization');   
+
+  // set to true if you need the website to include  cookies  in the  request  sent 
+  // to the API (eg. in case you can see sessions )
+  res.setHeader('Access-Control-Allow-Credentials','true');
+
+  // pass to the next layer of middleware
+  next();
+
+});
 
 mongoose.connect('mongodb+srv://admin:Babi2003@cluster0.gcmabkc.mongodb.net/userdb?retryWrites=true&w=majority');
 
